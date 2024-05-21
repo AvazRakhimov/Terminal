@@ -1,3 +1,4 @@
+// import NodeJS module
 const readline = require('node:readline')
 
 const rl = readline.createInterface({
@@ -20,19 +21,26 @@ const question = () => {
             console.log('Exiting...')
             rl.close()
             break
+            case 'n':
+            console.log('Canceled.')
+            question()
+            break
             case '':
             console.log('Canceled.')
             question()
             break
+            // if you enter anything besides 'y', 'n' and '' (empty), it stucks.
+            // if you know how to fix it, leave a comment.
             }
         })
+        question()
         break
     /////
 
     // help command (not all commands written, fixes and updates coming soon...)
       case 'help':
         console.log(
-          `'about': About project\n'bash' or 'zsh': Switch themes\n'help': Show commands\n'exit': Exit from app`
+          `'about': About project\n'bash' & 'zsh': Switch themes || shell\n'help': Show commands\n'exit': Exit from app`
         )
         question()
         break
@@ -48,7 +56,7 @@ const question = () => {
     // about command
       case 'about':
         console.log(
-          "Project 'Terminal' made for fun.\nThis app made possible by 'Avaz'."
+          "Project 'Terminal' made for fun.\nThis app made possible by 'Avaz'"
         )
         question()
         break
@@ -101,7 +109,7 @@ const question = () => {
         break
     /////
 
-      // shell command (find out which shell || theme you're currently using)
+      // shell command (find out which theme || shell you're currently using)
       case 'shell':
         theme === '~$ ' ? console.log('bash') : null;
         theme === '% ' ? console.log('zsh') : null;
@@ -135,11 +143,11 @@ const question = () => {
         question()
         break
       case 'cd Downloads':
-        console.log("You're in Downloads folder")
+        console.log("You're in Downloads folder\nSource: Trust me bro.")
         question()
         break
       case 'cd Documents':
-        console.log("You're in Documents folder")
+        console.log("You're in Documents folder\nSource: Trust me bro.")
         question()
         break
     /////
@@ -160,31 +168,14 @@ const question = () => {
         break
     /////
 
-    // neofetch command (not completed, fixes coming soon...)
+    // neofetch command
       case 'neofetch':
-        console.log("\n   #####    ##          ##\n ##     ##   ##        ##\n ##     ##    ##      ##\n #########     ##    ##\n ##     ##      ##  ##\n ##     ##       ####\n")
+        console.log("\n   #####    ##          ##    #####     ########\n ##     ##   ##        ##   ##     ##        ##\n ##     ##    ##      ##    ##     ##       ##\n #########     ##    ##     #########     ##\n ##     ##      ##  ##      ##     ##    ##\n ##     ##       ####       ##     ##   ########\n")
         question()
         break
-
     /////
 
-    // touch command (not working as aspected but I working on it, updates and fixes coming soon...)
-      case 'touch':
-        q = "Enter title of file: "
-        rl.question(q, (file, title) => {
-        switch (file, title) {
-          case (file):
-            if (title === '') {
-              console.log("You didn't enter anything.")
-            } else {
-              console.log(`${file} file created.`)
-            }
-            question()
-            break
-          }
-        })
-        question()
-        break
+    // touch command (not working for now, updates coming soon...)
     /////
 
     // error (default) command
@@ -205,5 +196,5 @@ const question = () => {
   })
 }
 
-console.log('Welcome to Terminal!')
+console.log('Disclamer!\nThis is NOT a real terminal')
 question()
