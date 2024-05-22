@@ -6,7 +6,7 @@ const rl = readline.createInterface({
   output: process.stdout,
 })
 
-let theme = `~$ ` // theme || shell
+let theme = `~$ ` // shell
 
 const question = () => {
   rl.question(theme, (text) => {
@@ -29,19 +29,16 @@ const question = () => {
             console.log('Canceled.')
             question()
             break
-            // if you enter anything besides 'y', 'n' and '' (empty), it stucks.
-            // if you know how to fix it, leave a comment.
-            }
+            // 1-issue
+          }
         })
         question()
         break
     /////
 
-    // help command (not all commands written, fixes and updates coming soon...)
+    // help command (v0.1, "'touch [filename]': Create a new file\n" coming soon...)
       case 'help':
-        console.log(
-          `'about': About project\n'bash' & 'zsh': Switch themes || shell\n'help': Show commands\n'exit': Exit from app`
-        )
+        console.log(`'about': About project\n'bash' & 'zsh': Switch shell\n'clear': Clear terminal\n'cd [dir]': Change directory\n'exit': Exit from app\n'help': Show commands\n'ls': List directories\n'neofetch': Display system information\n'shell': Show current shell\n'whereami': Show current directory`)
         question()
         break
     /////
@@ -56,13 +53,13 @@ const question = () => {
     // about command
       case 'about':
         console.log(
-          "Project 'Terminal' made for fun.\nThis app made possible by 'Avaz'"
+          "Project 'Terminal' made for fun.\nThis app made possible by Avaz"
         )
         question()
         break
     /////
 
-    // theme || shell
+    // shell
       case 'zsh':
         // theme = "% "
         if (theme === "~$ ") {
@@ -70,6 +67,9 @@ const question = () => {
           console.log('Shell changed: zsh')
         } else if (theme === "~/Desktop$ ") {
           theme = "/Desktop% "
+          console.log('Shell changed: zsh')
+        } else if (theme === "~/Downloads$ ") {
+          theme = "/Downloads% "
           console.log('Shell changed: zsh')
         }
         question()
@@ -81,6 +81,9 @@ const question = () => {
           console.log('Shell changed: bash')
         } else if (theme === "/Desktop% ") {
           theme = "~/Desktop$ "
+          console.log('Shell changed: bash')
+        } else if (theme === "/Downloads% ") {
+          theme = "~/Downloads$ "
           console.log('Shell changed: bash')
         }
         question()
@@ -97,12 +100,16 @@ const question = () => {
     // ls command
       case 'ls':
         if (theme === "~$ ") {
-          console.log(`Desktop   Downloads   Documents   Pictures   Music   Videos`)
+          console.log("Desktop   Downloads   Documents   Pictures   Music   Videos")
         } else if (theme === "% ") {
-          console.log(`Desktop   Downloads   Documents   Pictures   Music   Videos`)
+          console.log("Desktop   Downloads   Documents   Pictures   Music   Videos")
         } else if (theme === "~/Desktop$ ") {
           ;;
         } else if (theme === "/Desktop% ") {
+          ;;
+        } else if (theme === "~/Downloads$ ") {
+          ;;
+        } else if (theme === "/Downloads% ") {
           ;;
         }
         question()
@@ -111,10 +118,12 @@ const question = () => {
 
       // shell command (find out which theme || shell you're currently using)
       case 'shell':
-        theme === '~$ ' ? console.log('bash') : null;
-        theme === '% ' ? console.log('zsh') : null;
-        theme === "~/Desktop$ " ? console.log('bash') : null;
-        theme === "/Desktop% " ? console.log('zsh') : null;
+        theme === '~$ ' ? console.log('bash') : null
+        theme === '% ' ? console.log('zsh') : null
+        theme === "~/Desktop$ " ? console.log('bash') : null
+        theme === "/Desktop% " ? console.log('zsh') : null
+        theme === "~/Downloads$ " ? console.log('bash') : null
+        theme === "/Downloads% " ? console.log('zsh') : null
         question()
         break
 
@@ -122,18 +131,19 @@ const question = () => {
       case 'cd':
         theme === "~/Desktop$ " ? theme = '~$ ' : null
         theme === "/Desktop% " ? theme = '% ' : null
+        theme === "~/Downloads$ " ? theme = '~$ ' : null
+        theme === "/Downloads% " ? theme = '% ' : null
         question()
         break
       case 'cd ..':
-        if (theme === "~/Desktop$ ") {
-          theme = '~$ '
-          console.log("You're in Home folder")
-        } else if (theme === "/Desktop% ") {
-          theme = '% '
-          console.log("You're in Home folder")
-        }
+        theme === "~/Desktop$ " ? theme = '~$ ' : null
+        theme === "/Desktop% " ? theme = '% ' : null
+        theme === "~/Downloads$ " ? theme = '~$ ' : null
+        theme === "/Downloads% " ? theme = '% ' : null
         question()
         break
+
+      // Completed
       case 'cd Desktop':
         if (theme === "~$ ") {
           theme = "~/Desktop$ "
@@ -143,11 +153,29 @@ const question = () => {
         question()
         break
       case 'cd Downloads':
-        console.log("You're in Downloads folder\nSource: Trust me bro.")
+        if (theme === "~$ ") {
+        theme = "~/Downloads$ "
+      } else if (theme === "% ") {
+        theme = "/Downloads% "
+      }
         question()
         break
+
+      // Not completed
       case 'cd Documents':
         console.log("You're in Documents folder\nSource: Trust me bro.")
+        question()
+        break
+      case 'cd Pictures':
+        console.log("You're in Pictures folder\nSource: Trust me bro.")
+        question()
+        break
+      case 'cd Music':
+        console.log("You're in Music folder\nSource: Trust me bro.")
+        question()
+        break
+      case 'cd Videos':
+        console.log("You're in Videos folder\nSource: Trust me bro.")
         question()
         break
     /////
@@ -168,14 +196,14 @@ const question = () => {
         break
     /////
 
-    // neofetch command
+    // neofetch command (v0.1)
       case 'neofetch':
         console.log("\n   #####    ##          ##    #####     ########\n ##     ##   ##        ##   ##     ##        ##\n ##     ##    ##      ##    ##     ##       ##\n #########     ##    ##     #########     ##\n ##     ##      ##  ##      ##     ##    ##\n ##     ##       ####       ##     ##   ########\n")
         question()
         break
     /////
 
-    // touch command (not working for now, updates coming soon...)
+    // touch command (coming soon...)
     /////
 
     // error (default) command
@@ -196,5 +224,5 @@ const question = () => {
   })
 }
 
-console.log('Disclamer!\nThis is NOT a real terminal')
+console.log("Disclamer! This is NOT a real terminal\nType 'help' to view available commands")
 question()
