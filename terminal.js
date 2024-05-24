@@ -61,36 +61,18 @@ const question = () => {
     // shell
       case 'zsh':
         // theme = "% "
-        if (theme === "~$ ") {
-          theme = "% "
-          console.log('Shell changed: zsh')
-        } else if (theme === "~/Desktop$ ") {
-          theme = "/Desktop% "
-          console.log('Shell changed: zsh')
-        } else if (theme === "~/Downloads$ ") {
-          theme = "/Downloads% "
-          console.log('Shell changed: zsh')
-        } else if (theme === "~/Documents$ ") {
-          theme = "/Documents% "
-          console.log('Shell changed: zsh')
-        }
+        theme === "~$ " ? theme = "% " && console.log('Shell changed: zsh') : null
+        theme === "~/Desktop$ " ? theme = "/Desktop% " && console.log('Shell changed: zsh') : null
+        theme === "~/Downloads$ " ? theme = "/Downloads% " && console.log('Shell changed: zsh') : null
+        theme === "~/Documents$ " ? theme = "/Documents% " && console.log('Shell changed: zsh') : null
         question()
         break
       case 'bash':
         // theme = "~$ "
-        if (theme === "% ") {
-          theme = "~$ "
-          console.log('Shell changed: bash')
-        } else if (theme === "/Desktop% ") {
-          theme = "~/Desktop$ "
-          console.log('Shell changed: bash')
-        } else if (theme === "/Downloads% ") {
-          theme = "~/Downloads$ "
-          console.log('Shell changed: bash')
-        } else if (theme === "/Documents% ") {
-          theme = "~/Documents$ "
-          console.log('Shell changed: bash')
-        }
+        theme === "% " ? theme = "~$ " && console.log('Shell changed: bash') : null
+        theme === "/Desktop% " ? theme = "~/Desktop$ " && console.log('Shell changed: bash') : null
+        theme === "/Downloads% " ? theme = "~/Downloads$ " && console.log('Shell changed: bash') : null
+        theme === "/Documents% " ? theme = "~/Documents$ " && console.log('Shell changed: bash') : null
         question()
         break
     /////
@@ -104,28 +86,19 @@ const question = () => {
 
     // ls command
       case 'ls':
-        if (theme === "~$ ") {
-          console.log("Desktop   Downloads   Documents   Pictures   Music   Videos")
-        } else if (theme === "% ") {
-          console.log("Desktop   Downloads   Documents   Pictures   Music   Videos")
-        } else if (theme === "~/Desktop$ ") {
-          ;;
-        } else if (theme === "/Desktop% ") {
-          ;;
-        } else if (theme === "~/Downloads$ ") {
-          ;;
-        } else if (theme === "/Downloads% ") {
-          ;;
-        } else if (theme === "~/Documents$ ") {
-          ;;
-        } else if (theme === "/Documents% ") {
-          ;;
-        }
+        theme === "~$ " ? console.log("Desktop   Downloads   Documents   Pictures   Music   Videos") : null
+        theme === "% " ? console.log("Desktop   Downloads   Documents   Pictures   Music   Videos") : null
+        theme === "~/Desktop$ " ?  null : null
+        theme === "/Desktop% " ? null : null
+        theme === "~/Downloads$ " ? null : null
+        theme === "/Downloads% " ? null : null
+        theme === "~/Documents$ " ? null : null
+        theme === "/Documents% " ? null : null
         question()
         break
     /////
 
-      // shell command (find out which theme || shell you're currently using)
+    // shell command (find out which theme || shell you're currently using)
       case 'shell':
         theme === '~$ ' ? console.log('bash') : null
         theme === '% ' ? console.log('zsh') : null
@@ -137,6 +110,7 @@ const question = () => {
         theme === "/Documents% " ? console.log('zsh') : null
         question()
         break
+    /////
 
     // cd (change direction) command related // adding "folders" coming soon...
       case 'cd':
@@ -158,7 +132,7 @@ const question = () => {
         question()
         break
 
-      // Completed
+    // Completed
       case 'cd Desktop':
         theme === "~$ " ? theme = "~/Desktop$ " : null
         theme === "% " ? theme = "/Desktop% " : null
@@ -177,7 +151,7 @@ const question = () => {
         question()
         break
 
-      // Not completed
+    // Not completed
       case 'cd Pictures':
         console.log("You're in Pictures folder\nSource: Trust me bro.")
         question()
@@ -194,24 +168,30 @@ const question = () => {
 
     // whereami command
       case 'whereami':
-        if (theme === "~/Desktop$ ") {
-          console.log('Desktop')
-        } else if (theme === "/Desktop% ") {
-          console.log('Desktop')
-        } else if (theme === "~$ ") {
-          console.log("Home")
-        } else if (theme === "% ") {
-          console.log("Home")
-        } else if (theme === "~/Documents$ ") {
-          console.log('Documents')
-        } else if (theme === "/Documents% ") {
-          console.log('Documents')
-        } else if (theme === "~/Downloads$ ") {
-          console.log('Downloads')
-        } else if (theme === "/Downloads% ") {
-          console.log('Downloads')
-        }
+        theme === "~/Desktop$ " ? console.log('Desktop') : null
+        theme === "/Desktop% " ? console.log('Desktop') : null
+        theme === "~$ " ? console.log("Home") : null
+        theme === "% " ? console.log("Home") : null
+        theme === "~/Documents$ " ? console.log('Documents') : null
+        theme === "/Documents% " ? console.log('Documents') : null
+        theme === "~/Downloads$ " ? console.log('Downloads') : null
+        theme === "/Downloads% " ? console.log('Downloads') : null
         // console.log("Home")
+        question()
+        break
+    /////
+
+    // touch command (not works as aspected, fixes and updates coming soon...)
+      case 'touch':
+        q = 'Enter file name: '
+        rl.question(q, (title) => {
+          switch (title) {
+            case title:
+            title === '' ? console.log('Canceled.') : console.log(`File ${title} created.`)
+            question()
+            break
+          }
+        })
         question()
         break
     /////
@@ -223,31 +203,20 @@ const question = () => {
         break
     /////
 
-    // touch command (coming soon...)
-    /////
-
     // error (default) command
       default:
-        if (theme === "~$ ") {
-          console.log(`bash: command not found: ${text}`)
-        } else if (theme === "% ") {
-          console.log(`zsh: command not found: ${text}`)
-        } else if (theme === "~/Desktop$ ") {
-          console.log(`bash: command not found: ${text}`)
-        } else if (theme === "/Desktop% ") {
-          console.log(`zsh: command not found: ${text}`)
-        } else if (theme === "~/Documents$ ") {
-          console.log(`bash: command not found: ${text}`)
-        } else if (theme === "/Documents% ") {
-          console.log(`zsh: command not found: ${text}`)
-        } else if (theme === "~/Downloads$ ") {
-          console.log(`bash: command not found: ${text}`)
-        } else if (theme === "/Downloads% ") {
-          console.log(`zsh: command not found: ${text}`)
-        }
+        theme === "~$ " ? console.log(`bash: command not found: ${text}`) : null
+        theme === "% " ? console.log(`zsh: command not found: ${text}`) : null
+        theme === "~/Desktop$ " ? console.log(`bash: command not found: ${text}`) : null
+        theme === "/Desktop% " ? console.log(`zsh: command not found: ${text}`) : null
+        theme === "~/Documents$ " ? console.log(`bash: command not found: ${text}`) : null
+        theme === "/Documents% " ? console.log(`zsh: command not found: ${text}`) : null
+        theme === "~/Downloads$ " ? console.log(`bash: command not found: ${text}`) : null
+        theme === "/Downloads% " ? console.log(`zsh: command not found: ${text}`) : null
         question()
         break
     /////
+
     }
   })
 }
