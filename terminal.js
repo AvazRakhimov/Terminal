@@ -14,19 +14,19 @@ const question = () => {
     // space (nothing) command
       case '':
         console.log("You didn't enter anything. Want to close the app?")
-        q = "Enter 'y' or 'n': "
+        q = `Enter \x1b[31my\x1b[0m or \x1b[32mn\x1b[0m: `
         rl.question(q, txt => {
           switch (txt) {
             case 'y':
-              console.log('Exiting...')
+              console.log('\x1b[31m%s\x1b[0m', 'Exiting...')
               rl.close()
               break
             case 'n':
-              console.log('Canceled.')
+              console.log('\x1b[32m%s\x1b[0m', 'Canceled.')
               question()
               break
             case txt:
-              console.log('Canceled.')
+              console.log('\x1b[32m%s\x1b[0m', 'Canceled.')
               question()
               break
           }
@@ -35,25 +35,23 @@ const question = () => {
         break
     /////
 
-    // help command (v0.2)
+    // help command (v1)
       case 'help':
-        console.log(`'about': About project\n'bash' & 'zsh': Switch shell\n'clear': Clear terminal\n'cd [dir]': Change directory\n'exit': Exit from app\n'help': Show commands\n'ls': List directories\n'neofetch': Display system information\n'shell': Show current shell\n'touch': Create a new file\n'whereami': Show current directory`)
+        console.log(`\x1b[36mabout\x1b[0m: About project\n\x1b[36mbash\x1b[0m or \x1b[36mzsh\x1b[0m: Switch shell\n\x1b[36mclear\x1b[0m: Clear terminal\n\x1b[36mcd [dir]\x1b[0m: Change directory\n\x1b[36mexit\x1b[0m: Exit from app\n\x1b[36mhelp\x1b[0m: Show commands\n\x1b[36mls\x1b[0m: List directories\n\x1b[36mneofetch\x1b[0m: Display system information\n\x1b[36mshell\x1b[0m: Show current shell\n\x1b[36mtouch\x1b[0m: Create a new file\n\x1b[36mwhereami\x1b[0m: Show current directory`)
         question()
         break
     /////
 
     // exit command
       case 'exit':
-        console.log('Exiting...')
+        console.log(`\x1b[31mExiting...`)
         rl.close()
         break
     /////
 
     // about command
       case 'about':
-        console.log(
-          "Project Terminal made for fun.\nThis app made possible by Avaz."
-        )
+        console.log("Project Terminal made for fun.\nThis app made possible by Avaz.")
         question()
         break
     /////
@@ -123,8 +121,8 @@ const question = () => {
 
     // ls command
       case 'ls':
-        theme === "~$ " ? console.log("Desktop   Downloads   Documents   Pictures   Music   Videos") : null
-        theme === "% " ? console.log("Desktop   Downloads   Documents   Pictures   Music   Videos") : null
+        theme === "~$ " ? console.log('\x1b[34m%s\x1b[0m', "Desktop   Downloads   Documents   Pictures   Music   Videos") : null
+        theme === "% " ? console.log('\x1b[34m%s\x1b[0m', "Desktop   Downloads   Documents   Pictures   Music   Videos") : null
         theme === "~/Desktop$ " ?  null : null
         theme === "/Desktop% " ? null : null
         theme === "~/Downloads$ " ? null : null
@@ -276,20 +274,20 @@ const question = () => {
 
     // error (default) command
       default:
-        theme === "~$ " ? console.log(`bash: command not found: ${text}`) : null
-        theme === "% " ? console.log(`zsh: command not found: ${text}`) : null
-        theme === "~/Desktop$ " ? console.log(`bash: command not found: ${text}`) : null
-        theme === "/Desktop% " ? console.log(`zsh: command not found: ${text}`) : null
-        theme === "~/Documents$ " ? console.log(`bash: command not found: ${text}`) : null
-        theme === "/Documents% " ? console.log(`zsh: command not found: ${text}`) : null
-        theme === "~/Downloads$ " ? console.log(`bash: command not found: ${text}`) : null
-        theme === "/Downloads% " ? console.log(`zsh: command not found: ${text}`) : null
-        theme === "~/Pictures$ " ? console.log(`bash: command not found: ${text}`) : null
-        theme === "/Pictures% " ? console.log(`zsh: command not found: ${text}`) : null
-        theme === "~/Music$ " ? console.log(`bash: command not found: ${text}`) : null
-        theme === "/Music% " ? console.log(`zsh: command not found: ${text}`) : null
-        theme === "~/Videos$ " ? console.log(`bash: command not found: ${text}`) : null
-        theme === "/Videos% " ? console.log(`zsh: command not found: ${text}`) : null
+        theme === "~$ " ? console.log('\x1b[31m%s\x1b[0m', `bash: command not found: ${text}`) : null
+        theme === "% " ? console.log('\x1b[31m%s\x1b[0m', `zsh: command not found: ${text}`) : null
+        theme === "~/Desktop$ " ? console.log('\x1b[31m%s\x1b[0m', `bash: command not found: ${text}`) : null
+        theme === "/Desktop% " ? console.log('\x1b[31m%s\x1b[0m', `zsh: command not found: ${text}`) : null
+        theme === "~/Documents$ " ? console.log('\x1b[31m%s\x1b[0m', `bash: command not found: ${text}`) : null
+        theme === "/Documents% " ? console.log('\x1b[31m%s\x1b[0m', `zsh: command not found: ${text}`) : null
+        theme === "~/Downloads$ " ? console.log('\x1b[31m%s\x1b[0m', `bash: command not found: ${text}`) : null
+        theme === "/Downloads% " ? console.log('\x1b[31m%s\x1b[0m', `zsh: command not found: ${text}`) : null
+        theme === "~/Pictures$ " ? console.log('\x1b[31m%s\x1b[0m', `bash: command not found: ${text}`) : null
+        theme === "/Pictures% " ? console.log('\x1b[31m%s\x1b[0m', `zsh: command not found: ${text}`) : null
+        theme === "~/Music$ " ? console.log('\x1b[31m%s\x1b[0m', `bash: command not found: ${text}`) : null
+        theme === "/Music% " ? console.log('\x1b[31m%s\x1b[0m', `zsh: command not found: ${text}`) : null
+        theme === "~/Videos$ " ? console.log('\x1b[31m%s\x1b[0m', `bash: command not found: ${text}`) : null
+        theme === "/Videos% " ? console.log('\x1b[31m%s\x1b[0m', `zsh: command not found: ${text}`) : null
         question()
         break
     /////
@@ -297,5 +295,6 @@ const question = () => {
   })
 }
 
-console.log("Disclamer! This is NOT a real terminal\nType 'help' to view available commands")
+console.clear()
+console.log(`\x1b[31mDISCLAIMER: This is NOT a real terminal!\x1b[0m\nType \x1b[36mhelp\x1b[0m to view available commands`)
 question()
