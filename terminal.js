@@ -1,4 +1,4 @@
-// import NodeJS module
+// import Node.js module
 const readline = require('node:readline')
 
 const rl = readline.createInterface({
@@ -6,15 +6,15 @@ const rl = readline.createInterface({
   output: process.stdout,
 })
 
-let theme = `~$ ` // theme a.k.a shell
+let theme = `~$ ` // default bash theme a.k.a shell
 
 const question = () => {
   rl.question(theme, (text) => {
     switch (text) {
-    // space (nothing) command
+    // empty (nothing) command
       case '':
         console.log("You didn't enter anything. Want to close the app?")
-        q = `Enter \x1b[31my\x1b[0m or \x1b[32mn\x1b[0m: `
+        q = `Enter \x1b[91my\x1b[0m or \x1b[92mn\x1b[0m: `
         rl.question(q, txt => {
           switch (txt) {
             case 'y':
@@ -35,9 +35,9 @@ const question = () => {
         break
     /////
 
-    // help command (v1)
+    // help command (v1.1)
       case 'help':
-        console.log(`\x1b[36mabout\x1b[0m: About project\n\x1b[36mbash\x1b[0m or \x1b[36mzsh\x1b[0m: Switch shell\n\x1b[36mclear\x1b[0m: Clear terminal\n\x1b[36mcd [dir]\x1b[0m: Change directory\n\x1b[36mexit\x1b[0m: Exit from app\n\x1b[36mhelp\x1b[0m: Show commands\n\x1b[36mls\x1b[0m: List directories\n\x1b[36mneofetch\x1b[0m: Display system information\n\x1b[36mshell\x1b[0m: Show current shell\n\x1b[36mtouch\x1b[0m: Create a new file\n\x1b[36mwhereami\x1b[0m: Show current directory`)
+        console.log(`\x1b[96mabout\x1b[0m: About project\n\x1b[96mbash\x1b[0m or \x1b[96mzsh\x1b[0m: Switch shell\n\x1b[96mclear\x1b[0m: Clear terminal\n\x1b[96mcd [dir]\x1b[0m: Change directory\n\x1b[96mexit\x1b[0m: Exit from app\n\x1b[96mhelp\x1b[0m: Show commands\n\x1b[96mls\x1b[0m: List directories\n\x1b[96mneofetch\x1b[0m: Display system information\n\x1b[96mshell\x1b[0m: Show current shell\n\x1b[96mtouch\x1b[0m: Create a new file\n\x1b[96mwhereami\x1b[0m: Show current directory`)
         question()
         break
     /////
@@ -49,9 +49,9 @@ const question = () => {
         break
     /////
 
-    // about command
+    // about command (v0.1)
       case 'about':
-        console.log("Project Terminal made for fun.\nThis app made possible by Avaz.")
+        console.log("Project \x1b[93mTerminal\x1b[0m made for fun.\nThis app made possible by \x1b[91mAvaz\x1b[0m")
         question()
         break
     /////
@@ -61,7 +61,7 @@ const question = () => {
       case 'zsh':
         if (theme === "~$ ") {
           theme = "% ";
-          console.log('Shell changed: zsh')
+          console.log('Shell changed: \x1b[33mzsh\x1b[0m')
         } else if (theme === "~/Desktop$ ") {
           theme = "/Desktop% ";
           console.log('Shell changed: zsh')
@@ -88,7 +88,7 @@ const question = () => {
       case 'bash':
         if (theme === "% ") {
           theme = "~$ ";
-          console.log('Shell changed: bash')
+          console.log('Shell changed: \x1b[33mbash\x1b[0m')
         } else if (theme === "/Desktop% ") {
           theme = "~/Desktop$ ";
           console.log('Shell changed: bash')
@@ -119,10 +119,10 @@ const question = () => {
         break
     /////
 
-    // ls command
+    // ls command (v0.1)
       case 'ls':
-        theme === "~$ " ? console.log('\x1b[34m%s\x1b[0m', "Desktop   Downloads   Documents   Pictures   Music   Videos") : null
-        theme === "% " ? console.log('\x1b[34m%s\x1b[0m', "Desktop   Downloads   Documents   Pictures   Music   Videos") : null
+        theme === "~$ " ? console.log('\x1b[94m%s\x1b[0m', "Desktop   Downloads   Documents   Pictures   Music   Videos") : null
+        theme === "% " ? console.log('\x1b[94m%s\x1b[0m', "Desktop   Downloads   Documents   Pictures   Music   Videos") : null
         theme === "~/Desktop$ " ?  null : null
         theme === "/Desktop% " ? null : null
         theme === "~/Downloads$ " ? null : null
@@ -139,7 +139,7 @@ const question = () => {
         break
     /////
 
-    // shell command (find out which theme || shell you're currently using)
+    // shell command (see which theme a.k.a shell is using now)
       case 'shell':
         theme === '~$ ' ? console.log('bash') : null
         theme === '% ' ? console.log('zsh') : null
@@ -159,7 +159,7 @@ const question = () => {
         break
     /////
 
-    // cd (change direction) command related // adding "folders" coming soon...
+    // cd (change direction) command
       case 'cd':
         theme === "~/Desktop$ " ? theme = '~$ ' : null
         theme === "/Desktop% " ? theme = '% ' : null
@@ -192,7 +192,7 @@ const question = () => {
         question()
         break
 
-    // cd [dir]
+    // cd [dir]; (123 line)
       case 'cd Desktop':
         theme === "~$ " ? theme = "~/Desktop$ " : null
         theme === "% " ? theme = "/Desktop% " : null
@@ -250,7 +250,7 @@ const question = () => {
         break
     /////
 
-    // touch command (not works as aspected, fixes and updates coming soon...)
+    // touch command (updates coming soon...)
       case 'touch':
         q = 'Enter file name: '
         rl.question(q, (title) => {
@@ -265,14 +265,14 @@ const question = () => {
         break
     /////
 
-    // neofetch command (v0.3)
+    // neofetch command (v0.3-alpha)
       case 'neofetch':
         console.log("\n   #####    ##          ##    #####     ########\n ##     ##   ##        ##   ##     ##        ##\n ##     ##    ##      ##    ##     ##       ##\n #########     ##    ##     #########     ##\n ##     ##      ##  ##      ##     ##    ##\n ##     ##       ####       ##     ##   ########\n")
         question()
         break
     /////
 
-    // error (default) command
+    // error handler (not command)
       default:
         theme === "~$ " ? console.log('\x1b[31m%s\x1b[0m', `bash: command not found: ${text}`) : null
         theme === "% " ? console.log('\x1b[31m%s\x1b[0m', `zsh: command not found: ${text}`) : null
@@ -296,5 +296,5 @@ const question = () => {
 }
 
 console.clear()
-console.log(`\x1b[31mDISCLAIMER: This is NOT a real terminal!\x1b[0m\nType \x1b[36mhelp\x1b[0m to view available commands`)
+console.log(`\x1b[91mDISCLAIMER: This is NOT a real terminal!\x1b[0m\nType \x1b[36mhelp\x1b[0m to view available commands`)
 question()
